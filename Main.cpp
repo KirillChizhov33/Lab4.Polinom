@@ -1,128 +1,44 @@
 
-#include "Header.h"
-List::List()
-{
-	h = nullptr;
-}
-List::List(const List &b)
-{
-	if (b.h == nullptr)
-	{
-		throw - 1;
-	}
-	Link * k;
-	k = b.h;
-	while (k != nullptr)
-	{
-		this->insertf(k->value);
-		k = k->n;
-	}
-}
-List::~List()
-{
-	while (h != nullptr)
-	{
-		deletef();
-	}
-}
-void List::insertf(TMonom value)
-{
-	Link * k;
-	k = new Link;
-	k->value = value;
-	k->n = h;
-	h = k;
-}
-void List::show()
-{
-	Link * p;
-	p = h;
-	while (p != nullptr)
-	{
-		cout << p->value.GetCoeff() << "  ";
-		cout << p->value.GetIndex() << endl;
-		p = p->n;
-	}
-}
-void List::deletef()
-{
-	if (h == nullptr)
-	{
-		return;
-	}
-	Link * p;
-	p = h;
-	h = h->n;
-	delete p;
-}
-void List::insertl(TMonom value)
-{
-	Link * p;
-	p = new Link;
-	p->value = value;
-	p->n = nullptr;
-	Link * t;
-	if (h == nullptr)
-	{
-		h = p;
-		return;
-	}
-	t = h;
-	while (t->n != nullptr)
-	{
-		t = t->n;
-	}
-	t->n = p;
-}
-void List::deletel()
-{
-	if (h == nullptr)
-	{
-		return;
-	}
-	if (h->n == nullptr)
-	{
-		delete h;
-		return;
-	}
-	Link * p;
-	p = h;
-	while (p->n->n != nullptr)
-	{
-		p = p->n;
-	}
-	delete p->n;
-	p->n = nullptr;
-}
-TMonom & List:: operator [](int index)
-{
-	if (index < 0)
-	{
-		throw - 1;
-	}
-	Link * t = h;
-	int i = 0;
-	while ((t != nullptr) && (i < index))
-	{
-		i++;
-		t = t->n;
-	}
-	if (t == nullptr)
-	{
-		throw - 1;
-	}
-	else
-	return t->value;
-}
-int List::GetSize(void)
-{
-	Link * t = h;
-	int size = 0;
-	while (t != NULL)
-	{
-		size++;
-		t = t->n;
-	}
-	return size;
-}
 
+#include "Header.h"
+int main()	
+	{
+		TMonom Ar(2, 4);
+		TMonom Br(3, 64);
+		TMonom Cr(6, 163);
+		TMonom Dr(5, 223);
+		TMonom Er(7, 351);
+		List A, B; //B(A);
+		int k;
+		cout << "Original list:\n";
+		A.insertf(Ar);
+		A.insertf(Br);
+		A.insertf(Cr);
+		A.insertf(Dr);
+		A.show();
+		int s = A.GetSize();
+		cout << s;
+		//B = A;
+		cout << "\n\n";
+		cout << "Can assign B = A:\n";
+		B.show();
+		cout << "\n";
+		cout << "\n\n";
+		cout << "Can insert last element: \n";
+		A.insertl(Er);
+		A.show();
+		cout << "\n\n";
+		cout << "Can delete first element: \n";
+		A.deletef();
+		A.deletef();
+		A.deletef();
+		A.show();
+		cout << "\n\n";
+		cout << "Can delete last element: \n";
+		A.deletel();
+		A.show();
+		cout << "\n";
+		cout << "Can delete all elements\n";
+		A.~List();
+		A.show();
+	}
