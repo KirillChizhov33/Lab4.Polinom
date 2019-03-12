@@ -1,22 +1,31 @@
 #pragma once
 #include <iostream>
 using namespace std;
-#pragma once
 class TMonom
 {
-	int Coeff; // коэффициент монома
+	double Coeff; // коэффициент монома
 	int Index; // индекс (свертка степеней)
 public:
-	TMonom(int cval = 1, int ival = 0)
+	/*TMonom(int cval = 1, int ival = 0)
 	{
 		if (ival > 999)
 		{
 			throw - 1;
 		}
 		Coeff = cval; Index = ival;
-	};
-	void SetCoeff(int cval) { Coeff = cval; }
-	int GetCoeff(void) { return Coeff; }
+	};*/
+
+	TMonom(int dx = 1, int dy = 0, int dz = 2, double _coeff = 3)
+	{
+		if ((dx > 19) || (dx < 0) || (dy > 19) || (dy < 0) || (dz > 19) || (dz < 0))
+		{
+			throw - 1;
+		}
+		Index = dx * 400 + dy * 20 + dz;
+		Coeff = _coeff;
+	}
+	void SetCoeff(double cval) { Coeff = cval; }
+	double GetCoeff(void) { return Coeff; }
 	void SetIndex(int ival) { Index = ival; }
 	int GetIndex(void) { return Index; }
 	TMonom & operator=(const TMonom &tm)
@@ -24,13 +33,17 @@ public:
 		Coeff = tm.Coeff; Index = tm.Index;
 		return *this;
 	}
-	int operator==(const TMonom &tm)
+	bool operator==(const TMonom &tm)
 	{
 		return (Coeff == tm.Coeff) && (Index == tm.Index);
 	}
-	int operator<(const TMonom &tm)
+	bool operator<(const TMonom &tm)
 	{
 		return Index < tm.Index;
+	}
+	bool operator>(const TMonom &tm)
+	{
+		return Index > tm.Index;
 	}
 };
 
@@ -53,14 +66,8 @@ public:
 	void deletel();
 	TMonom & operator [](int index);
 	int GetSize(void);
-	List sum(List A, List B)
-	{
-
-	}
+	List& operator+(const List &b);
+	List& operator-(const List &b);
+	List& operator*(const List &b);
 };
-class Polinom
-{
-public:
-	Polinom & operator+(const Polinom &q);
-	Polinom & operator*(const Polinom &q);
-};
+List *parser();
