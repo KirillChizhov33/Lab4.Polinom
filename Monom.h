@@ -6,15 +6,6 @@ class TMonom
 	double Coeff; // коэффициент монома
 	int Index; // индекс (свертка степеней)
 public:
-	/*TMonom(int cval = 1, int ival = 0)
-	{
-		if (ival > 999)
-		{
-			throw - 1;
-		}
-		Coeff = cval; Index = ival;
-	};*/
-
 	TMonom(int dx = 1, int dy = 0, int dz = 2, double _coeff = 3)
 	{
 		if ((dx > 19) || (dx < 0) || (dy > 19) || (dy < 0) || (dz > 19) || (dz < 0))
@@ -35,15 +26,20 @@ public:
 	}
 	bool operator==(const TMonom &tm)
 	{
-		return (Coeff == tm.Coeff) && (Index == tm.Index);
+		return (Index == tm.Index);
 	}
 	bool operator<(const TMonom &tm)
 	{
-		return Index < tm.Index;
+		return (Index < tm.Index);
 	}
 	bool operator>(const TMonom &tm)
 	{
-		return Index > tm.Index;
+		return (Index > tm.Index);
+	}
+	friend ostream & operator<<(ostream &os, const TMonom &b)
+	{
+		cout << b.Index << " ||| " << b.Coeff;
+		return os;
 	}
 };
 
@@ -70,4 +66,4 @@ public:
 	List& operator-(const List &b);
 	List& operator*(const List &b);
 };
-List *parser();
+List* parser(string s);
