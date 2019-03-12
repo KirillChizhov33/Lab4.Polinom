@@ -40,9 +40,19 @@ int main()
 	cout << "Can delete all elements\n";
 	A.~List();
 	A.show();
-	List Ex;
-	Ex = *parser();
-	cout << "Parser:\n";
-	Ex.show();
+	string str1 = "12x^12+10x^9y^4-1.5x^7+2.5y^2z^3+7z^2-9z^1";
+	string str2 = "-3.5x^7+2.5y^4z^3+8z^8-19z^3";
+	List Ex1;
+	Ex1 = *parser(str1);
+	cout << "Parser:\n\n";
+	Ex1.show();
+	List Ex2;
+	Ex2 = *parser(str2);
+	cout << "Parser:\n\n";
+	Ex2.show();
+	List FinalValue;
+	FinalValue = Ex1 + Ex2;
+	cout << "\n\n Result:  ";
+	FinalValue.show();
 	return 0;
 }
