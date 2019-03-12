@@ -1,10 +1,9 @@
 #include "Monom.h"
 #include <stdio.h>
 #include <string>
-List* parser()
+List* parser(string s)
 {
 	List* R = new List;
-	string s = "-1.5x^7+2.5y^2z^3+7z^2-9";
 	s += '+';
 	cout << s << endl;
 	int size = s.size();
@@ -38,7 +37,7 @@ List* parser()
 		}
 		if ((s[i] == '+') || (s[i] == '-'))
 		{
-			cout << "Monom:" << coef << " " << x << y << z << endl;
+			//cout << "Monom:" << coef << " " << x << y << z << endl;
 			TMonom Cnt(x, y, z, coef);
 			(*R).insertf(Cnt);
 			tmp = s[i];
