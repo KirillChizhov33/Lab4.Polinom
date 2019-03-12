@@ -38,8 +38,8 @@ void List::show()
 	p = h;
 	while (p != nullptr)
 	{
-		cout << p->value.GetCoeff() << "  ";
-		cout << p->value.GetIndex() << endl;
+		cout << "Coeff: " << p->value.GetCoeff() << "  ";
+		cout << "Index: " << p->value.GetIndex() << endl;
 		p = p->n;
 	}
 }
