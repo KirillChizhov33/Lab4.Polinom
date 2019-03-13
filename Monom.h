@@ -21,7 +21,8 @@ public:
 	int GetIndex(void) { return Index; }
 	TMonom & operator=(const TMonom &tm)
 	{
-		Coeff = tm.Coeff; Index = tm.Index;
+		Coeff = tm.Coeff; 
+		Index = tm.Index;
 		return *this;
 	}
 	bool operator==(const TMonom &tm)
@@ -38,7 +39,7 @@ public:
 	}
 	friend ostream & operator<<(ostream &os, const TMonom &b)
 	{
-		cout << b.Index << " ||| " << b.Coeff;
+		cout << b.Index << "//" << b.Coeff;
 		return os;
 	}
 };
@@ -57,13 +58,16 @@ public:
 	~List();
 	void insertf(TMonom value);
 	void show();
-	void deletef();
+	TMonom deletef();
 	void insertl(TMonom value);
-	void deletel();
+	TMonom deletel();
 	TMonom & operator [](int index);
-	int GetSize(void);
+	int GetSize();
+	bool IsListEmpty();
 	List& operator+(const List &b);
 	List& operator-(const List &b);
 	List& operator*(const List &b);
 };
 List* parser(string s);
+void rep(List A);
+
