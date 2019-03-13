@@ -1,3 +1,4 @@
+
 #include "Monom.h"
 List::List()
 {
@@ -43,22 +44,25 @@ void List::show()
 		p = p->n;
 	}
 }
-void List::deletef()
+TMonom List::deletef()
 {
 	if (h == nullptr)
 	{
-		return;
+		return NULL;
 	}
+	TMonom K;
 	Link * p;
 	p = h;
+	K = p->value;
 	h = h->n;
 	delete p;
+	return K;
 }
 void List::insertl(TMonom value)
 {
 	Link * p;
 	p = new Link;
-//	p->value = value;
+	//	p->value = value;
 	p->n = nullptr;
 	Link * t;
 	if (h == nullptr)
@@ -73,25 +77,28 @@ void List::insertl(TMonom value)
 	}
 	t->n = p;
 }
-void List::deletel()
+TMonom List::deletel()
 {
 	if (h == nullptr)
 	{
-		return;
+		return NULL;
 	}
 	if (h->n == nullptr)
 	{
 		delete h;
-		return;
+		return NULL;
 	}
+	TMonom K;
 	Link * p;
 	p = h;
 	while (p->n->n != nullptr)
 	{
 		p = p->n;
 	}
+	K = p->value;
 	delete p->n;
 	p->n = nullptr;
+	return K;
 }
 TMonom & List:: operator [](int index)
 {
@@ -113,7 +120,7 @@ TMonom & List:: operator [](int index)
 	else
 		return t->value;
 }
-int List::GetSize(void)
+int List::GetSize()
 {
 	Link * t = h;
 	int size = 0;
@@ -123,4 +130,12 @@ int List::GetSize(void)
 		t = t->n;
 	}
 	return size;
+}
+bool List::IsListEmpty()
+{
+	if (h == NULL)
+	{
+		return false;
+	}
+	return true;
 }
