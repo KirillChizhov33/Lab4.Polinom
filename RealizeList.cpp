@@ -62,7 +62,7 @@ void List::insertl(TMonom value)
 {
 	Link * p;
 	p = new Link;
-	//	p->value = value;
+	p->value = value;
 	p->n = nullptr;
 	Link * t;
 	if (h == nullptr)
