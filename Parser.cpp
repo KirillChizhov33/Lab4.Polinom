@@ -192,7 +192,7 @@ void rep(List A)
 			{
 				cout << coeff;
 			}
-			i++;
 		}
+		i++;
 	}
 }
